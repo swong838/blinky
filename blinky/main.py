@@ -1,9 +1,15 @@
-from flask import Flask
-app = Flask(__name__)
+import os
+from flask import Flask, render_template
+
+template_dir = os.path.abspath('./blinky/views/templates/')
+app = Flask(__name__, template_folder=template_dir)
+
 
 @app.route("/")
-def hello():
-    return "Hello c World!"
+def index():
+    template = 'index.jinja2'
+    return render_template(template)
 
-app.run(host='0.0.0.0', port=8000, threaded=True)
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000, threaded=True, debug=True)
