@@ -1,5 +1,7 @@
+__pycache__/
 /bin
 /include
 /lib
 /local
+/node_modules
 

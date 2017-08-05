@@ -2,7 +2,7 @@
 
 function cleanup {
    echo "Shutting down server; clearing LED output"
-   python ~/Scripts/blinky/blinky/lib/clear.py
+   python ~/Scripts/blinky/blinky/lib/led.py
 }
 
 trap cleanup EXIT

@@ -1,0 +1,12 @@
+
+# 0-100%
+max_brightness: 70
+
+# for the sleep timer on PWM
+rate: .01
+
+# GPIO pins
+pins:
+  RED: 13
+  GREEN: 19
+  BLUE: 26
