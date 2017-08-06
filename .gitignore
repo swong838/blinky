@@ -4,4 +4,4 @@ __pycache__/
 /lib
 /local
 /node_modules
-
+blinky/static
