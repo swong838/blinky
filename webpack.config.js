@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'blinky/views/static/js');
+var BUILD_DIR = path.resolve(__dirname, 'blinky/static/');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {

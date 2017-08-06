@@ -4,6 +4,10 @@
   "author": "swong",
   "scripts": {},
   "dependencies": {
+    "es6-promise": "^4.1.1",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "webpack": "^3.4.1"
   },
   "devDependencies": {
