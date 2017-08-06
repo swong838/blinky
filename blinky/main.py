@@ -17,9 +17,16 @@ def index():
     return render_template(template, **context)
 
 
-@app.route('/reset', methods=['HEAD', 'GET'])
+@app.route('/reset', methods=['PUT'])
 def reset():
     led_driver.clearall()
+    return ''
+
+
+@app.route('/test', methods=['PUT'])
+def cycle_test():
+    led_driver.clearall()
+    led_driver.test_cycle()
     return ''
 
 

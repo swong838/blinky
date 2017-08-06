@@ -1,13 +1,13 @@
 import React from 'react';
 import Button from './_button'
 
-const label = 'clear';
+const label = 'test';
 const api = {
-    route: '/reset',
+    route: '/test',
     method: 'PUT'
 };
 
-class ClearButton extends Button {
+class TestButton extends Button {
 
     constructor(props) {
         super(props);
@@ -17,4 +17,4 @@ class ClearButton extends Button {
 
 };
 
-export default ClearButton;
+export default TestButton;

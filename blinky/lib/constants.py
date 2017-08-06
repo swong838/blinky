@@ -10,7 +10,7 @@ with open(config_file, 'r') as stream:
 class Constants():
 
     RATE = config_data['rate']
-    MAX = int(255 * ((config_data['max_brightness'] % 100) * .1))
+    MAX = int(255 * ((config_data['max_brightness'] % 100) * .01))
     PINS = {
         'RED': config_data['pins']['RED'],
         'GREEN': config_data['pins']['GREEN'],

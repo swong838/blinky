@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TestButton from './components/test_button';
 import ClearButton from './components/clear_button';
 
 class Brazier extends React.Component {
@@ -7,6 +8,7 @@ class Brazier extends React.Component {
         return (
             <div>
                 <ClearButton />
+                <TestButton />
             </div>
         )
     }
