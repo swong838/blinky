@@ -5,4 +5,5 @@ __pycache__/
 /local
 /node_modules
 *.pyc
-blinky/static/compiled
+.DS_Store
+blinky/static/compiled/
