@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 from lib.led import Led
 
 template_dir = os.path.abspath('./blinky/views/templates/')
@@ -12,7 +12,8 @@ led_driver = Led()
 def index():
     template = 'index.jinja2'
     context = {
-        'app_path': url_for('static', filename='app.js')
+        'app_path': url_for('static', filename='compiled/app.js'),
+        'css_path': url_for('static', filename='css/picker.css')
     }
     return render_template(template, **context)
 
@@ -27,6 +28,14 @@ def reset():
 def cycle_test():
     led_driver.test_cycle()
     return ''
+
+
+@app.route('/setcolor', methods=['PUT'])
+def set_color():
+    values = request.get_json()
+    print(values['r'])
+    print(values['g'])
+    print(values['b'])
 
 
 if __name__ == '__main__':

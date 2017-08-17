@@ -25,9 +25,9 @@ class Led():
     def test_cycle(self):
         def effect(killsignal):
             pairs = (
-                (Constants.PINS['RED'], Constants.PINS['GREEN']),
-                (Constants.PINS['GREEN'], Constants.PINS['BLUE']),
-                (Constants.PINS['BLUE'], Constants.PINS['RED'])
+                (self.pins['RED'], self.pins['GREEN']),
+                (self.pins['GREEN'], self.pins['BLUE']),
+                (self.pins['BLUE'], self.pins['RED'])
             )
             for pair in pairs:
                 val1 = self.max_power
@@ -41,6 +41,16 @@ class Led():
                     if killsignal.is_set():
                         return
         self._animate('pulsing test cycle', effect)
+
+    def _setrgb(self, r=0, g=0, b=0):
+        r = int(r)
+        g = int(g)
+        b = int(b)
+
+        self.killsignal.set()
+        self._set(self.pins['RED'], r)
+        self._set(self.pins['GREEN'], g)
+        self._set(self.pins['BLUE'], b)
 
     def _animate(self, name, effect):
         self.killsignal.set()

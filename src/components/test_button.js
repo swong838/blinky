@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './_button'
+import Interactable from './_interactable'
 
 const label = 'test';
 const api = {
@@ -7,7 +7,7 @@ const api = {
     method: 'PUT'
 };
 
-class TestButton extends Button {
+class TestButton extends Interactable {
 
     constructor(props) {
         super(props);
