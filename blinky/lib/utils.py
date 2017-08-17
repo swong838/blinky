@@ -14,3 +14,6 @@ class Animation(threading.Thread):
     def run(self):
         while not self.killsignal.is_set():
             self.effect()
+
+def clamp(minimum, value, maximum):
+    return max(minimum, min(value, maximum))

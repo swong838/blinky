@@ -30,12 +30,11 @@ def cycle_test():
     return ''
 
 
-@app.route('/setcolor', methods=['PUT'])
+@app.route('/setcolor', methods=['POST'])
 def set_color():
     values = request.get_json()
-    print(values['r'])
-    print(values['g'])
-    print(values['b'])
+    led_driver.setrgb(r=values['r'], g=values['g'], b=values['b'])
+    return ''
 
 
 if __name__ == '__main__':

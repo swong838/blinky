@@ -3,11 +3,12 @@ import threading
 from time import sleep
 from copy import deepcopy
 
-
 try:
     from .constants import Constants
+    from .utils import clamp
 except SystemError:
     from constants import Constants
+    from utils import clamp
 
 
 class Led():
@@ -42,15 +43,15 @@ class Led():
                         return
         self._animate('pulsing test cycle', effect)
 
-    def _setrgb(self, r=0, g=0, b=0):
-        r = int(r)
-        g = int(g)
-        b = int(b)
+    def setrgb(self, r=0, g=0, b=0):
+        red = clamp(0, int(r), self.max_power)
+        green = clamp(0, int(g), self.max_power)
+        blue = clamp(0, int(b), self.max_power)
 
         self.killsignal.set()
-        self._set(self.pins['RED'], r)
-        self._set(self.pins['GREEN'], g)
-        self._set(self.pins['BLUE'], b)
+        self._set(self.pins['RED'], red)
+        self._set(self.pins['GREEN'], green)
+        self._set(self.pins['BLUE'], blue)
 
     def _animate(self, name, effect):
         self.killsignal.set()

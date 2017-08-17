@@ -7,7 +7,10 @@ promise.polyfill();
 const label = 'changeme';
 const api = {
     route: '',
-    method: 'GET'
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    }
 };
 
 
@@ -26,7 +29,7 @@ class Interactable extends React.Component {
     }
 
     _onInteraction(event) {
-        event.preventDefault()
+        event && event.preventDefault && event.preventDefault();
         if (this.state.isFetching) {
             return;
         }
@@ -46,7 +49,8 @@ class Interactable extends React.Component {
 
     callAPI() {
         return fetch(this.api.route, {
-            method: this.api.method
+            method: this.api.method,
+            headers: this.api.headers
         })
     }
 
