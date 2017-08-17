@@ -18,20 +18,22 @@ class Led():
     rate = Constants.RATE
     killsignal = threading.Event()
 
+    _colors = {
+        'RED': 0,
+        'GREEN': 0,
+        'BLUE': 0
+    }
+
     def __init__(self):
         self.pz = pigpio.pi()
         for pin in self.pins.values():
             self.pz.set_mode(pin, pigpio.OUTPUT)
 
-    def setrgb(self, r=0, g=0, b=0):
-        red = clamp(0, int(r), self.max_power)
-        green = clamp(0, int(g), self.max_power)
-        blue = clamp(0, int(b), self.max_power)
-
+    def setrgb(self, r=None, g=None, b=None):
         self.killsignal.set()
-        self._set(self.pins['RED'], red)
-        self._set(self.pins['GREEN'], green)
-        self._set(self.pins['BLUE'], blue)
+        self._set('RED', r)
+        self._set('GREEN', g)
+        self._set('BLUE', b)
 
     def _animate(self, name, effect):
         self.killsignal.set()
@@ -39,8 +41,22 @@ class Led():
         runner = Animation(name, effect, self.killsignal)
         runner.start()
 
-    def _set(self, pin, val):
-        self.pz.set_PWM_dutycycle(pin, val)
+    # primitive for setting a single color
+    def _set(self, color, val):
+        self._colors[color] = clamp(0, int(val), self.max_power)
+        self.pz.set_PWM_dutycycle(self.pins[color], self._colors[color])
+
+    @property
+    def red(self):
+        return self._colors['RED']
+
+    @property
+    def green(self):
+        return self._colors['GREEN']
+
+    @property
+    def blue(self):
+        return self._colors['BLUE']
 
     def clearall(self):
         # terminate any running animations

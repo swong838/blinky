@@ -33,6 +33,8 @@ def cycle_test():
 @app.route('/setcolor', methods=['POST'])
 def set_color():
     values = request.get_json()
+    if not values.keys() == {'r', 'g', 'b'}:
+        abort(406)
     led_driver.setrgb(r=values['r'], g=values['g'], b=values['b'])
     return ''
 

@@ -12,9 +12,9 @@ class Effects(Led):
     def test_cycle(self):
         def effect(killsignal):
             pairs = (
-                (self.pins['RED'], self.pins['GREEN']),
-                (self.pins['GREEN'], self.pins['BLUE']),
-                (self.pins['BLUE'], self.pins['RED'])
+                ('RED', 'GREEN'),
+                ('GREEN', 'BLUE'),
+                ('BLUE', 'RED')
             )
             for pair in pairs:
                 val1 = self.max_power
@@ -31,6 +31,12 @@ class Effects(Led):
 
     @property
     def candle(self):
+        ranges = {
+            'RED': (175, 240),
+            'GREEN': (121, 142),
+            'BLUE': (33, 39)
+        }
+
         def effect(killsignal):
             pass
 
