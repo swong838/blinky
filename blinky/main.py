@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, send_from_directory, url_for
+from flask import Flask, render_template, url_for
 from lib.led import Led
 
 template_dir = os.path.abspath('./blinky/views/templates/')
@@ -25,7 +25,6 @@ def reset():
 
 @app.route('/test', methods=['PUT'])
 def cycle_test():
-    led_driver.clearall()
     led_driver.test_cycle()
     return ''
 

@@ -7,6 +7,6 @@ rate: .01
 
 # GPIO pins
 pins:
-  RED: 13
+  RED: 12
   GREEN: 19
-  BLUE: 26
+  BLUE: 16

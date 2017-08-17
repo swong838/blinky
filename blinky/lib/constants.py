@@ -1,5 +1,5 @@
 import os
-from yaml import load, Loader
+from yaml import load
 
 config_file = os.path.abspath('./blinky/lib/config.yml')
 
