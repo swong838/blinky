@@ -23,26 +23,6 @@ class Led():
         for pin in self.pins.values():
             self.pz.set_mode(pin, pigpio.OUTPUT)
 
-    def test_cycle(self):
-        def effect(killsignal):
-            pairs = (
-                (self.pins['RED'], self.pins['GREEN']),
-                (self.pins['GREEN'], self.pins['BLUE']),
-                (self.pins['BLUE'], self.pins['RED'])
-            )
-            for pair in pairs:
-                val1 = self.max_power
-                val2 = 0
-                while val2 < self.max_power and val1 > 0:
-                    self._set(pair[0], val1)
-                    self._set(pair[1], val2)
-                    val2 += 1
-                    val1 -= 1
-                    sleep(self.rate)
-                    if killsignal.is_set():
-                        return
-        self._animate('pulsing test cycle', effect)
-
     def setrgb(self, r=0, g=0, b=0):
         red = clamp(0, int(r), self.max_power)
         green = clamp(0, int(g), self.max_power)
