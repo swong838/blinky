@@ -1,6 +1,7 @@
 import pigpio
 import threading
 from time import sleep
+from random import random, randint
 from copy import deepcopy
 
 try:
@@ -14,14 +15,14 @@ except SystemError:
 class Led():
 
     pins = deepcopy(Constants.PINS)
-    max_power = Constants.MAX
+    max_power = float(Constants.MAX)
     rate = Constants.RATE
     killsignal = threading.Event()
 
     _colors = {
-        'RED': 0,
-        'GREEN': 0,
-        'BLUE': 0
+        'RED': 0.0,
+        'GREEN': 0.0,
+        'BLUE': 0.0
     }
 
     def __init__(self):
@@ -29,6 +30,15 @@ class Led():
         for pin in self.pins.values():
             self.pz.set_mode(pin, pigpio.OUTPUT)
 
+    # how many milliseconds should we spend in a subphase of an animation?
+    def get_phase_length(self, range):
+        return randint(*range)
+
+    # how much should the brightness value change per tick?
+    def get_step(self, start_power, end_power, ticks):
+        return -(start_power - end_power) / ticks
+
+    # directly set RGB, killing any running animations
     def setrgb(self, r=None, g=None, b=None):
         self.killsignal.set()
         self._set('RED', r)
@@ -43,8 +53,9 @@ class Led():
 
     # primitive for setting a single color
     def _set(self, color, val):
-        self._colors[color] = clamp(0, int(val), self.max_power)
-        self.pz.set_PWM_dutycycle(self.pins[color], self._colors[color])
+        clamped_value = clamp(0.0, float(val), self.max_power)
+        self._colors[color] = round(clamped_value, 2)
+        self.pz.set_PWM_dutycycle(self.pins[color], round(self._colors[color]))
 
     @property
     def red(self):
