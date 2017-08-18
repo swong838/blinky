@@ -20,6 +20,12 @@ class Brazier extends React.Component {
                         <li>
                             <TriggerEffect label="Candle" effect="candle" />
                         </li>
+                        <li>
+                            <TriggerEffect label="Flare" effect="flare" />
+                        </li>
+                        <li>
+                            <TriggerEffect label="Pulse" effect="pulsered" />
+                        </li>
                     </ul>
                 </section>
                 <section>

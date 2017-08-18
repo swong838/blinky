@@ -45,11 +45,12 @@ class Led():
         self._set('GREEN', g)
         self._set('BLUE', b)
 
-    def _animate(self, name, effect):
+    def _animate(self, name, effect, expire_after=None):
         self.killsignal.set()
         self.killsignal = threading.Event()
         runner = Animation(name, effect, self.killsignal)
         runner.start()
+        return runner
 
     # primitive for setting a single color
     def _set(self, color, val):
