@@ -10,67 +10,35 @@ except SystemError:
 
 class Effects(Led):
 
-    @property
-    def pulsered(self):
-        duration = 2000
-        pulse_width = 1500
-        red = {
-            'start': self.red,
-            'target': self.max_power,
-            'diff': self.max_power - self.red
-        }
-        green = {
-            'start': self.green,
-            'target': 0,
-            'diff': -self.green
-        }
-        blue = {
-            'start': self.blue,
-            'target': 0,
-            'diff': -self.blue
-        }
-
-        # phase 1 - ease to red over 2 seconds
-        def phase1(killsignal):
-            ticks = 0
-            while ticks < duration:
-                progress = ticks / duration
-                self._set('RED', red['start'] + (red['diff'] * ease(progress)))
-                self._set('GREEN', green['start'] + (green['diff'] * ease(progress)))
-                self._set('BLUE', blue['start'] + (blue['diff'] * ease(progress)))
-                ticks += 1
-                if killsignal.is_set():
-                    return
-                sleep(.001)
-            killsignal.set()
-
-        def dopulse(killsignal):
-            ticks = 0
-            while ticks < pulse_width:
-                progress = ticks / duration
-                self._set('RED', self.max_power - (self.max_power * ease(progress)))
-                ticks += 1
-                if killsignal.is_set():
-                    return
-                sleep(.001)
-
-            ticks = 0
-            while ticks < pulse_width:
-                progress = ticks / duration
-                self._set('RED', self.max_power * ease(progress))
-                ticks += 1
-                if killsignal.is_set():
-                    return
-                sleep(.001)
-
-            pass
-
-        self._animate('pulse_red_in', phase1)
-        sleep(2)
-        self._set('RED', self.max_power)
-        self._set('GREEN', 0)
-        self._set('BLUE', 0)
-        self._animate('pulse_red', dopulse)
+    #@property
+    #def pulsered(self):
+#
+    #    self._ease_to_state(r=self.max_power)
+    #    sleep(2)
+#
+    #    pulse_width = 1500
+#
+    #    def dopulse(killsignal):
+    #        ticks = 0
+    #        while ticks < pulse_width:
+    #            progress = ticks / pulse_width
+    #            self._set('RED', self.max_power - (self.max_power * ease(progress)))
+    #            ticks += 1
+    #            if killsignal.is_set():
+    #                return
+    #            sleep(.001)
+#
+    #        ticks = 0
+    #        while ticks < pulse_width:
+    #            progress = ticks / pulse_width
+    #            self._set('RED', self.max_power * ease(progress))
+    #            ticks += 1
+    #            if killsignal.is_set():
+    #                return
+    #            sleep(.001)
+    #        sleep(1)
+#
+    #    self._animate('pulse_red', dopulse)
 
     @property
     def test_cycle(self):
@@ -115,6 +83,45 @@ class Effects(Led):
         }
         effect = self._flicker_factory(colors, pulses)
         self._animate('candle', effect)
+
+    #def _ease_to_state(self, r=0, g=0, b=0):
+    #    duration = 2000
+#
+    #    red = {
+    #        'start': self.red,
+    #        'target': r,
+    #        'diff': self.max_power - self.red
+    #    }
+    #    red['diff'] = red['start'] - r
+    #    green = {
+    #        'start': self.green,
+    #        'target': g,
+    #        'diff': -self.green
+    #    }
+    #    blue = {
+    #        'start': self.blue,
+    #        'target': b,
+    #        'diff': -self.blue
+    #    }
+#
+    #
+    #    # phase 1 - ease to red over 2 seconds
+    #    def effect(killsignal):
+    #        ticks = 0
+    #        while ticks < duration:
+    #            progress = ticks / duration
+    #            self._set('RED', red['start'] + (red['diff'] * ease(progress)))
+    #            self._set('GREEN', green['start'] + (green['diff'] * ease(progress)))
+    #            self._set('BLUE', blue['start'] + (blue['diff'] * ease(progress)))
+    #            ticks += 1
+    #            if killsignal.is_set():
+    #                return
+    #            sleep(.001)
+    #        killsignal.set()
+#
+    #    self._animate('candle', effect)
+#
+    #    pass
 
     def _flicker_factory(self, color_ranges, pulse_ranges):
         def effect(killsignal):
