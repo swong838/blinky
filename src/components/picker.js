@@ -41,8 +41,12 @@ class Picker extends Interactable {
     }
 
     render() {
-        //return <ColorPicker value={this.state.color} onDrag={this.handleDrag} onChange={this._onInteraction} />
-        return <ColorPicker value={this.state.color} onDrag={this.handleDrag} />
+        return (
+            <section>
+                <ColorPicker value={this.state.color} onDrag={this.handleDrag} />
+                <code>{ JSON.stringify(hexToRgb(this.state.color)) }</code>
+            </section>
+        );
     }
 }
 

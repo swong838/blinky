@@ -1,1 +1,3 @@
 PyYaml
+pigpio
+PyTweening==1.0.3
