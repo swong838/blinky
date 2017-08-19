@@ -2,7 +2,10 @@
   "name": "rpi_blinky",
   "version": "0.1.0",
   "author": "swong",
-  "scripts": {},
+  "scripts": {
+    "watch": "./node_modules/.bin/webpack --watch",
+    "build": "./node_modules/.bin/webpack"
+  },
   "dependencies": {
     "deepcopy": "^0.6.3",
     "es6-promise": "^4.1.1",

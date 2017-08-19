@@ -21,9 +21,14 @@ class Brazier extends React.Component {
                             <TriggerEffect label="Candle" effect="candle" />
                         </li>
                         <li>
+                            <TriggerEffect label="Orange Lamp" effect="lamp_orange" />
+                        </li>
+                        <li>
                             <TriggerEffect label="Flare" effect="flare" />
                         </li>
-
+                        <li>
+                            <TriggerEffect label="Pulse" effect="pulsered" />
+                        </li>
                     </ul>
                 </section>
                 <section>
@@ -35,10 +40,3 @@ class Brazier extends React.Component {
 }
 
 ReactDOM.render(<Brazier />, document.getElementById('app'));
-
-
-/*
-<li>
-    <TriggerEffect label="Pulse" effect="pulsered" />
-</li>
-*/
