@@ -58,7 +58,7 @@ class Interactable extends React.Component {
 
     render() {
         return (
-            <button onClick={ this._onInteraction }>{ this.label }</button>
+            <button className="pure-button" onClick={ this._onInteraction }>{ this.label }</button>
         );
     }
 };

@@ -13,7 +13,9 @@ def index():
     template = 'index.jinja2'
     context = {
         'app_path': url_for('static', filename='compiled/app.js'),
-        'css_path': url_for('static', filename='css/picker.css')
+        'pure_css':  url_for('static', filename='css/pure-min.css'),
+        'responsive_css':  url_for('static', filename='css/grids-responsive.css'),
+        'picker_css': url_for('static', filename='css/picker.css')
     }
     return render_template(template, **context)
 

@@ -8,33 +8,25 @@ import ClearButton from './components/clear_button';
 class Brazier extends React.Component {
     render() {
         return (
-            <div>
-                <section>
-                    <div>
+            <article class="pure-g">
+                <div className="pure-u-1-2">
+                    <div className="pure-button-group">
                         <ClearButton />
-                    </div>
-                    <div>
                         <TestButton />
                     </div>
-                    <ul>
-                        <li>
-                            <TriggerEffect label="Candle" effect="candle" />
-                        </li>
-                        <li>
-                            <TriggerEffect label="Orange Lamp" effect="lamp_orange" />
-                        </li>
-                        <li>
-                            <TriggerEffect label="Flare" effect="flare" />
-                        </li>
-                        <li>
-                            <TriggerEffect label="Pulse" effect="pulsered" />
-                        </li>
-                    </ul>
-                </section>
-                <section>
+                </div>
+                <div className="pure-u-1-2">
+                    <div className="pure-button-group">
+                        <TriggerEffect label="Candle" effect="candle" />
+                        <TriggerEffect label="Orange Lamp" effect="lamp_orange" />
+                        <TriggerEffect label="Flare" effect="flare" />
+                        <TriggerEffect label="Pulse" effect="pulsered" />
+                    </div>
+                </div>
+                <section className="pure-u-1">
                     <Picker initialColor="rgb(0,0,0,1)" />
                 </section>
-            </div>
+            </article>
         )
     }
 }
